@@ -8,16 +8,6 @@ The project focuses on the kind of product work a real local community app would
 
 The app supports both light and dark mode across the five main screens.
 
-### Light Mode
-
-| Feed | Map | Create |
-|---|---|---|
-| ![Feed light](docs/screenshots/light-feed.png) | ![Map light](docs/screenshots/light-map.png) | ![Create post light](docs/screenshots/light-create.png) |
-
-| Activity | Profile |
-|---|---|
-| ![Activity light](docs/screenshots/light-activity.png) | ![Profile light](docs/screenshots/light-profile.png) |
-
 ### Dark Mode
 
 | Feed | Map | Create |
@@ -27,6 +17,16 @@ The app supports both light and dark mode across the five main screens.
 | Activity | Profile |
 |---|---|
 | ![Activity dark](docs/screenshots/dark-activity.png) | ![Profile dark](docs/screenshots/dark-profile.png) |
+
+### Light Mode
+
+| Feed | Map | Create |
+|---|---|---|
+| ![Feed light](docs/screenshots/light-feed.png) | ![Map light](docs/screenshots/light-map.png) | ![Create post light](docs/screenshots/light-create.png) |
+
+| Activity | Profile |
+|---|---|
+| ![Activity light](docs/screenshots/light-activity.png) | ![Profile light](docs/screenshots/light-profile.png) |
 
 ## Tech Stack
 
