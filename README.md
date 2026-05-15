@@ -136,3 +136,7 @@ Run tests from Android Studio or with:
 - Firestore listeners are used for Spark-plan real-time feed, comment, like, and activity updates.
 - Phone push notifications for another user's like/comment require a backend sender and are intentionally separated from the free-plan implementation.
 - The public feed shows approximate area labels instead of exposing exact coordinates in post cards.
+
+## License
+
+This project is licensed under the MIT License.
