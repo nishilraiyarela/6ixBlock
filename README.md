@@ -1,95 +1,57 @@
-6ixBlock
-6ixBlock is a Toronto-based Android community board for nearby posts, local events, free items, safety updates, help requests, and neighbourhood recommendations. The app is built with native Kotlin and XML, with Firebase and Room handling the live/community data layer and local caching.
+# 6ixBlock
 
-The project focuses on the kind of product work a real local community app would need: location-aware browsing, fast feed updates, saved posts, comments, activity notifications, map discovery, profile settings, and a UI that works in both light and dark mode.
+6ixBlock is a Toronto-based Android community board app for nearby posts, local events, help requests, free items, safety updates, and neighbourhood recommendations.
 
-Screenshots
-Add final screenshots to docs/screenshots/ before publishing the repository.
+The app is built with native Kotlin and XML using MVVM architecture, Firebase, Room, Google Maps, and location-aware features. It focuses on real community-app workflows such as creating location-tagged posts, browsing nearby updates, commenting, liking, saving posts, viewing activity updates, and discovering posts on a map.
 
-Recommended screenshots:
+## Screenshots
 
-Screen	File name
-Feed / Home	docs/screenshots/feed.png
-Create Post	docs/screenshots/create-post.png
-Map	docs/screenshots/map.png
-Post Detail	docs/screenshots/post-detail.png
-Activity	docs/screenshots/activity.png
-Profile	docs/screenshots/profile.png
-Dark Mode	docs/screenshots/dark-mode.png
-Once the images are added, this section can be changed to a visual grid.
+> Add final screenshots before publishing.
 
-Tech Stack
-Kotlin and XML views
-MVVM with ViewModels, repositories, use cases, and domain models
-Firebase Authentication
-Cloud Firestore
-Room Database
-Google Maps SDK
-Fused Location Provider
-Material Components
-Glide
-JUnit unit tests
-Features
-Toronto-first nearby feed with category filtering and pull-to-refresh
-Location-tagged community posts with approximate public area labels
-Live likes, comments, unread activity, and Feed bell badge updates using Firestore listeners
-Google Maps view with category-based markers for nearby posts
-Create Post flow with drafts, category selection, and map-based area selection
-Activity tab for likes and comments on the user's posts
-Saved posts and profile sections
-Settings for theme, radius, notification preferences, and profile info
-Room-backed cache for recently loaded posts, comments, drafts, and hidden content
-Light and dark theme support
-Architecture
-The app uses a layered structure:
+| Feed | Create Post | Map |
+|---|---|---|
+| `docs/screenshots/feed.png` | `docs/screenshots/create-post.png` | `docs/screenshots/map.png` |
 
-core: shared utilities, app settings, dependency container, state wrappers
-domain: models, repository interfaces, and use cases
-data: Firebase repositories, Room database, entities, DAOs, and mappers
-ui: activities, fragments, adapters, XML layouts, and ViewModels
-UI events flow through ViewModels into use cases and repository interfaces. Repository implementations combine Firebase, Room, location services, and local preferences, then expose clean domain models back to the UI.
+| Post Detail | Activity | Profile |
+|---|---|---|
+| `docs/screenshots/post-detail.png` | `docs/screenshots/activity.png` | `docs/screenshots/profile.png` |
 
-Firebase Setup
-Create a Firebase project.
-Add an Android app with package name:
-com.sixblock.app
-Download google-services.json.
-Place it here:
-app/google-services.json
-Enable Firebase Authentication:
-Email/password
-Google sign-in, if you want Google login
-Create a Firestore database.
-Deploy Firestore rules:
-firebase deploy --only firestore:rules
-The project is designed to work on the Firebase Spark plan for in-app real-time updates. True push notifications while the receiving app is fully closed require a trusted backend such as Cloud Functions.
+## Tech Stack
 
-Google Maps Setup
-Create a Maps API key and add it to local.properties:
+- Kotlin
+- XML Views
+- MVVM Architecture
+- Firebase Authentication
+- Cloud Firestore
+- Room Database
+- Google Maps SDK
+- Fused Location Provider
+- Material Components
+- Glide
+- JUnit
 
-MAPS_API_KEY=your_maps_key_here
-Do not commit real API keys or Firebase credentials.
+## Features
 
-Running The App
-Open the project in Android Studio.
-Add google-services.json.
-Add MAPS_API_KEY to local.properties.
-Sync Gradle.
-Run the app configuration on a device or emulator.
-For best testing, use two different accounts on two devices to verify live likes, comments, activity updates, and unread badges.
+- Toronto-first nearby community feed
+- Location-tagged posts with approximate public area labels
+- Category filtering for posts and map markers
+- Real-time likes, comments, activity updates, and unread badges using Firestore listeners
+- Saved posts and profile sections
+- Post detail screen with comments
+- Google Maps view with category-based pins
+- Create Post flow with drafts and map-based area selection
+- Activity tab for likes and comments on user posts
+- Light and dark theme support
+- Room-backed local caching for posts, comments, drafts, and hidden content
+- Settings for theme, radius, notifications, and profile info
 
-Tests
-The project includes unit tests for:
+## Architecture
 
-local/domain mappers
-geolocation and distance helpers
-time-ago formatting
-create-post validation/use case behavior
-Run tests from Android Studio or with:
+The project follows a layered Android architecture:
 
-./gradlew test
-Project Notes
-Image upload is not included because Firebase Storage requires billing for this project setup.
-Firestore listeners are used for Spark-plan real-time feed, comment, like, and activity updates.
-Phone push notifications for another user's like/comment require a backend sender and are intentionally separated from the free-plan implementation.
-The public feed shows approximate area labels instead of exposing exact coordinates in post cards.
+```text
+app/
+├── core/       shared utilities, settings, dependency container, state wrappers
+├── data/       Firebase, Room, repositories, DAOs, entities, mappers
+├── domain/     models, repository contracts, use cases
+└── ui/         activities, fragments, adapters, ViewModels, XML layouts
