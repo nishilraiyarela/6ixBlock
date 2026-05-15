@@ -1,0 +1,100 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    function signedIn() {
+      return request.auth != null;
+    }
+    function postOwnerId(postId) {
+      let post = get(/databases/$(database)/documents/posts/$(postId)).data;
+      return post.authorId != null ? post.authorId
+        : post.userId != null ? post.userId
+        : post.createdBy != null ? post.createdBy
+        : post.uid;
+    }
+    match /users/{userId} {
+      allow read: if signedIn();
+      allow create, update: if signedIn() && request.auth.uid == userId;
+      allow delete: if false;
+      match /deviceTokens/{tokenId} {
+        allow read, create, update, delete: if signedIn() && request.auth.uid == userId;
+      }
+      match /notifications/{notificationId} {
+        allow read, update: if signedIn() && request.auth.uid == userId;
+        allow create: if signedIn()
+          && request.resource.data.actorId == request.auth.uid
+          && (
+            !request.resource.data.keys().hasAny(["senderId"])
+            || request.resource.data.senderId == request.auth.uid
+          )
+          && (
+            !request.resource.data.keys().hasAny(["recipientId"])
+            || request.resource.data.recipientId == userId
+          )
+          && request.resource.data.type in ["comment", "like"]
+          && request.resource.data.postId is string
+          && postOwnerId(request.resource.data.postId) == userId;
+        allow delete: if false;
+      }
+      match /savedPosts/{postId} {
+        allow read, create, update, delete: if signedIn() && request.auth.uid == userId;
+      }
+    }
+    match /posts/{postId} {
+      allow read: if true;
+      allow create: if signedIn()
+        && request.resource.data.authorId == request.auth.uid
+        && request.resource.data.status == "active";
+      allow update: if signedIn()
+        && resource.data.authorId == request.auth.uid
+        && request.resource.data.authorId == resource.data.authorId
+        && request.resource.data.reportCount == resource.data.reportCount
+        && request.resource.data.diff(resource.data).affectedKeys().hasOnly(["title", "body", "categoryId", "status", "updatedAt"]);
+      allow update: if signedIn()
+        && request.resource.data.diff(resource.data).affectedKeys().hasOnly(["commentCount", "likeCount", "updatedAt"])
+        && (
+          !request.resource.data.diff(resource.data).affectedKeys().hasAny(["commentCount"])
+          || request.resource.data.commentCount >= 0
+        )
+        && (
+          !request.resource.data.diff(resource.data).affectedKeys().hasAny(["likeCount"])
+          || request.resource.data.likeCount >= 0
+        );
+      allow update: if signedIn()
+        && request.resource.data.diff(resource.data).affectedKeys().hasOnly(["reportCount"])
+        && request.resource.data.reportCount == resource.data.reportCount + 1;
+      allow delete: if false;
+      match /likes/{userId} {
+        allow read: if true;
+        allow create, update, delete: if signedIn() && request.auth.uid == userId;
+      }
+      match /comments/{commentId} {
+        allow read: if true;
+        allow create: if signedIn()
+          && request.resource.data.authorId == request.auth.uid
+          && request.resource.data.postId == postId
+          && request.resource.data.status == "active"
+          && request.resource.data.reportCount == 0;
+        allow update: if signedIn()
+          && resource.data.authorId == request.auth.uid
+          && resource.data.status == "active"
+          && request.resource.data.diff(resource.data).affectedKeys().hasOnly(["body", "updatedAt", "edited"])
+          && request.resource.data.body is string
+          && request.resource.data.edited == true;
+        allow update: if signedIn()
+          && resource.data.status == "active"
+          && (
+            resource.data.authorId == request.auth.uid
+            || postOwnerId(postId) == request.auth.uid
+          )
+          && request.resource.data.diff(resource.data).affectedKeys().hasOnly(["body", "status", "updatedAt"])
+          && request.resource.data.status == "deleted";
+        allow delete: if false;
+      }
+    }
+    match /reports/{reportId} {
+      allow create: if signedIn()
+        && request.resource.data.reporterId == request.auth.uid;
+      allow read, update, delete: if false;
+    }
+  }
+}

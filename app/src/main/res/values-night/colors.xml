@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="six_red">#FFFFFF</color>
+    <color name="lake_blue">#FFFFFF</color>
+    <color name="charcoal">#FFFFFF</color>
+    <color name="warm_white">#000000</color>
+    <color name="surface">#000000</color>
+    <color name="surface_alt">#000000</color>
+    <color name="line">#33FFFFFF</color>
+    <color name="muted_text">#B3FFFFFF</color>
+    <color name="park_green">#FFFFFF</color>
+    <color name="night_background">#000000</color>
+    <color name="night_surface">#000000</color>
+
+    <color name="login_black">#111111</color>
+    <color name="login_panel">#181818</color>
+    <color name="login_input">#252522</color>
+    <color name="login_text">#F2F2EE</color>
+    <color name="login_muted">#6F6F69</color>
+    <color name="dashboard_text">#FFFFFF</color>
+    <color name="dashboard_muted">#B8B8B8</color>
+    <color name="dashboard_line">#33FFFFFF</color>
+
+    <color name="feed_background">#000000</color>
+    <color name="feed_surface">#000000</color>
+    <color name="feed_card">#101010</color>
+    <color name="feed_search">#191919</color>
+    <color name="feed_banner">#101010</color>
+    <color name="feed_text">#FFFFFF</color>
+    <color name="feed_muted">#B8B8B8</color>
+    <color name="feed_line">#33FFFFFF</color>
+    <color name="feed_icon_button">#00000000</color>
+    <color name="feed_avatar">#282828</color>
+    <color name="feed_chip_selected">#252525</color>
+    <color name="feed_chip_selected_text">#FFFFFF</color>
+    <color name="action_like">#FF4D4F</color>
+    <color name="action_saved">#FFFFFF</color>
+    <color name="action_active">#FFFFFF</color>
+    <color name="skeleton_block">#242424</color>
+    <color name="profile_accent">#A78BFA</color>
+    <color name="profile_accent_alt">#F472B6</color>
+    <color name="profile_glass">#2BFFFFFF</color>
+
+</resources>

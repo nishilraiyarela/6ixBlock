@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Theme.SixBlock" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="android:fontFamily">sans</item>
+        <item name="android:windowLightStatusBar">true</item>
+        <item name="android:statusBarColor">@color/surface</item>
+        <item name="android:navigationBarColor">@color/surface</item>
+        <item name="colorPrimary">@color/six_red</item>
+        <item name="colorPrimaryVariant">@color/six_red</item>
+        <item name="colorSecondary">@color/lake_blue</item>
+        <item name="android:colorAccent">@color/six_red</item>
+    </style>
+
+    <style name="Theme.SixBlock.Splash" parent="Theme.SixBlock">
+        <item name="android:windowBackground">@drawable/bg_splash_window</item>
+        <item name="android:statusBarColor">@color/feed_background</item>
+        <item name="android:navigationBarColor">@color/feed_background</item>
+        <item name="android:windowLightStatusBar">true</item>
+    </style>
+
+    <style name="Widget.SixBlock.Button" parent="Widget.MaterialComponents.Button">
+        <item name="cornerRadius">8dp</item>
+        <item name="android:minHeight">48dp</item>
+        <item name="textAllCaps">false</item>
+        <item name="backgroundTint">@color/charcoal</item>
+        <item name="android:textColor">@color/surface</item>
+        <item name="iconTint">@color/surface</item>
+        <item name="rippleColor">@color/line</item>
+    </style>
+
+    <style name="Widget.SixBlock.OutlinedButton" parent="Widget.MaterialComponents.Button.OutlinedButton">
+        <item name="cornerRadius">8dp</item>
+        <item name="android:minHeight">48dp</item>
+        <item name="textAllCaps">false</item>
+        <item name="backgroundTint">@color/surface</item>
+        <item name="android:textColor">@color/charcoal</item>
+        <item name="strokeColor">@color/charcoal</item>
+        <item name="iconTint">@color/charcoal</item>
+    </style>
+
+    <style name="Widget.SixBlock.TextButton" parent="Widget.MaterialComponents.Button.TextButton">
+        <item name="textAllCaps">false</item>
+        <item name="android:textColor">@color/charcoal</item>
+        <item name="iconTint">@color/charcoal</item>
+    </style>
+
+    <style name="Widget.SixBlock.DashboardChip" parent="Widget.MaterialComponents.Button.OutlinedButton">
+        <item name="cornerRadius">10dp</item>
+        <item name="android:minHeight">46dp</item>
+        <item name="android:minWidth">88dp</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">46dp</item>
+        <item name="android:layout_marginEnd">10dp</item>
+        <item name="textAllCaps">false</item>
+        <item name="backgroundTint">@android:color/transparent</item>
+        <item name="android:textColor">@color/feed_text</item>
+        <item name="strokeColor">@color/line</item>
+        <item name="iconTint">@color/feed_text</item>
+        <item name="iconPadding">8dp</item>
+    </style>
+</resources>

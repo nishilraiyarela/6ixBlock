@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Theme.SixBlock" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="android:fontFamily">sans</item>
+        <item name="android:windowLightStatusBar">false</item>
+        <item name="android:statusBarColor">@color/feed_background</item>
+        <item name="android:navigationBarColor">@color/surface</item>
+        <item name="colorPrimary">@color/six_red</item>
+        <item name="colorPrimaryVariant">@color/six_red</item>
+        <item name="colorSecondary">@color/lake_blue</item>
+        <item name="android:colorAccent">@color/six_red</item>
+    </style>
+
+    <style name="Theme.SixBlock.Splash" parent="Theme.SixBlock">
+        <item name="android:windowBackground">@drawable/bg_splash_window</item>
+        <item name="android:statusBarColor">@color/feed_background</item>
+        <item name="android:navigationBarColor">@color/feed_background</item>
+        <item name="android:windowLightStatusBar">false</item>
+    </style>
+</resources>
